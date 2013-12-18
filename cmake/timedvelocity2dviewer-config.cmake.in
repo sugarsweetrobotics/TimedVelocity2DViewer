@@ -1,0 +1,54 @@
+# TimedVelocity2DViewer CMake config file
+#
+# This file sets the following variables:
+# TimedVelocity2DViewer_FOUND - Always TRUE.
+# TimedVelocity2DViewer_INCLUDE_DIRS - Directories containing the TimedVelocity2DViewer include files.
+# TimedVelocity2DViewer_IDL_DIRS - Directories containing the TimedVelocity2DViewer IDL files.
+# TimedVelocity2DViewer_LIBRARIES - Libraries needed to use TimedVelocity2DViewer.
+# TimedVelocity2DViewer_DEFINITIONS - Compiler flags for TimedVelocity2DViewer.
+# TimedVelocity2DViewer_VERSION - The version of TimedVelocity2DViewer found.
+# TimedVelocity2DViewer_VERSION_MAJOR - The major version of TimedVelocity2DViewer found.
+# TimedVelocity2DViewer_VERSION_MINOR - The minor version of TimedVelocity2DViewer found.
+# TimedVelocity2DViewer_VERSION_REVISION - The revision version of TimedVelocity2DViewer found.
+# TimedVelocity2DViewer_VERSION_CANDIDATE - The candidate version of TimedVelocity2DViewer found.
+
+message(STATUS "Found TimedVelocity2DViewer-@PROJECT_VERSION@")
+set(TimedVelocity2DViewer_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(TimedVelocity2DViewer_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(TimedVelocity2DViewer_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(TimedVelocity2DViewer_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(TimedVelocity2DViewer_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(TimedVelocity2DViewer_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(TimedVelocity2DViewer_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(TimedVelocity2DViewer_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(TimedVelocity2DViewer_VERSION @PROJECT_VERSION@)
+set(TimedVelocity2DViewer_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(TimedVelocity2DViewer_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(TimedVelocity2DViewer_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(TimedVelocity2DViewer_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
